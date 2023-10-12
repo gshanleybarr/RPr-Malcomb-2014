@@ -7,7 +7,7 @@ editor_options:
   markdown:
     wrap: sentence
 knit: (function(inputFile, encoding) {
-  rmarkdown::render(inputFile, encoding = encoding, output_dir = "../../docs/report") })
+  rmarkdown::render(inputFile, encoding = encoding, output_dir = "../../docs") })
 ---
 
 # Abstract 
@@ -1326,8 +1326,8 @@ plot(vulnerability_2)
 ```
 
 ```{r find break & limit values for vulnerability map number 2}
-vuln_max2 <- max(vulnerability_2[[1]],na.rm = TRUE)
-vuln_min2 <- min(vulnerability_2[[1]],na.rm = TRUE)
+vuln_max <- max(vulnerability_2[[1]],na.rm = TRUE)
+vuln_min <- min(vulnerability_2[[1]],na.rm = TRUE)
 ```
 
 ### Reproduction figure 6 - visualizing a multiplcative vulnerability score
@@ -1338,7 +1338,7 @@ vuln_map2 = ggplot() +
   scale_fill_gradient(
     low = "#FFFF75",
     high = "#CF4611",
-    breaks = c(vuln_min2, vuln_max2),
+    breaks = c(vuln_min, vuln_max),
     labels = c("Lower Vulnerability", "Higher Vulnerability"),
     na.value = "transparent",
     guide = "colourbar",
@@ -1474,8 +1474,19 @@ write_stars(vulnerability_r, here(public_d, "fig5rp.tif"), layer = "rpv")
 ```
 
 # Discussion
+In a reproduction analysis of Malcomb (2014), an multiplicative score was calculated to compare results with the original use of an additive vulnerability aggregation method in the original model. 
+
+Vulnerability scores from the additive model have a range of 33.08 - 82.94. Meanwhile, vulnerability scores from the multiplicative model have a range of 0 - 16,209.26. Visually inspecting the map outputs from both scores demonstrate that when using the additive vulnerability score there are more regions documented with moderate to high vulnerability (Figure 5). Meanwhile, using a multiplicative vulnerability score there are more areas with low vulnerability, with the exceptions of Northern and Southern Malawi which exhibit high vulnerability scores in both maps (Figures 5 and 6). 
 
 # Conclusions
+There are considerable differences in results between using additive or multiplicative aggregation methods to calculate vulnerability scores. Using an additive aggregation method, there are more regions that document higher vulnerability. In addition, no regions are able to have a vulnerability score of 0. Meanwhile, implementing a multiplicative aggregation method to calculate vulnerability allows for a substantially greater range of vulnerability scores including a value of 0.
+
+The implications of these differences in ranges are clearly observed when comparing maps in Figures 5 and 6. For instance, the additive method identified many more regions of Malawi as experiencing high vulnerability, while the multiplicative score predominantly highlighted the most vulnerable regions. This is because when implementing a multiplicative aggregation method there is a larger range and  substantially more values were captured within the intermediate range of vulnerability. 
+
+The results of the reproduction analysis have implications for the prioritization of development projects. For example, by implementing  and comparing additive and multiplicative aggregation methods can assist in identifying the most vulnerable regions of Malawi to climate change where adaptation projects should be prioritized. Furthermore, development projects should first prioritize regions with high vulnerability documented by the multiplicative vulnerability score and subsequently prioritize highly vulnerable regions identified by the additive score. 
+
+In sum, in concurrence with previous studies examining adaptive capacity and vulnerability (Liu & Kontu, 2022) generating a composite vulnerability score as an additive index is effective when estimating the impact of adaptive capacity interventions, however the multiplicative index is more effective with physical exposure and livelihood sensitivity metrics are included in vulnerability models. 
+
 
 
 # Integrity Statement
